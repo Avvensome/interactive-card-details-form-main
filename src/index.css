@@ -1,4 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+	-moz-appearance: textfield;
+}
 /* Main */
 * {
 	padding: 0;
@@ -7,14 +18,18 @@
 body {
 	overflow: hidden;
 }
+.container-main {
+	display: flex;
+}
 /* Left Side */
+.container-left-side-main {
+	display: flex;
+	position: relative;
+	width: 550px;
+}
 .left-side-bg {
 	height: 100vh;
 }
-.container-left-side-main {
-	position: relative;
-}
-
 .card-front-container {
 	position: absolute;
 	top: 250px;
@@ -46,6 +61,7 @@ body {
 	font-family: "Space Grotesk", sans-serif;
 	color: white;
 	font-size: 18px;
+	font-weight: 500;
 }
 .card-number {
 	bottom: 70px;
@@ -63,4 +79,75 @@ body {
 .card-cvv {
 	top: 105px;
 	right: 60px;
+}
+/* Right Side */
+.container-right-side-main {
+	flex: 1;
+}
+.container-right-side {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100vh;
+	height: 100vh;
+}
+label {
+	text-transform: uppercase;
+}
+.form-container {
+	display: inline-block;
+}
+.form-item {
+	display: flex;
+	flex-direction: column;
+}
+.form-item > * {
+	align-self: self-start;
+}
+.form-label {
+	font-weight: 500;
+	padding: 10px 0;
+	font-size: 18px;
+}
+.form-input {
+	width: 100%;
+	max-width: 425px;
+
+	padding: 0.8em;
+	font-size: 0.9em;
+	font-family: "Space Grotesk", sans-serif;
+
+	outline: none;
+	border: 1px solid #dddddd;
+	border-radius: 4px;
+	background-color: #ffffff;
+	transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+.form-input:focus {
+	border-color: hsl(249, 99%, 64%);
+}
+.form-input::placeholder {
+	color: hsl(270, 3%, 87%);
+}
+.form-input-error {
+	color: hsl(0, 100%, 66%);
+	border-color: hsl(0, 100%, 66%);
+}
+.form-error {
+	padding-top: 10px;
+	color: hsl(0, 100%, 66%);
+	visibility: hidden;
+}
+.form-input-error + .form-error {
+	visibility: visible;
+}
+.container-right-side-lower-section {
+	display: flex;
+}
+.container-right-side-lower-section .small-width {
+	width: 50px;
+	margin-right: 50px;
+}
+.container-right-side-lower-section .high-width {
+	flex: 1;
 }

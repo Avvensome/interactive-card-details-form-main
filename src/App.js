@@ -2,6 +2,7 @@ function App() {
 	return (
 		<div className="container-main">
 			<LeftSide />
+			<RightSide />
 		</div>
 	);
 }
@@ -42,6 +43,103 @@ function LeftSide() {
 					alt="card-front"
 				/>
 				<p className="card-info card-cvv">000</p>
+			</div>
+		</div>
+	);
+}
+function RightSide() {
+	return (
+		<div className="container-right-side-main">
+			<div className="container-right-side">
+				<form className="form-container">
+					<div className="form-item">
+						<label
+							form="holdername"
+							className="form-label"
+							placeholder="e.g Jhon Doe"
+						>
+							Cardholder Name
+						</label>
+						<input
+							name="holdername"
+							id="holdername"
+							type="text"
+							className="form-input "
+							placeholder="e.g Jhon Doe"
+						></input>
+						<span className="form-error">simple error</span>
+					</div>
+					<div className="form-item">
+						<label
+							form="cardnumber"
+							className="form-label"
+							placeholder="e.g 1234 5678 9123 0000"
+						>
+							Card number
+						</label>
+						<input
+							name="cardnumber"
+							id="cardnumber"
+							type="number"
+							className="form-input "
+							placeholder="e.g 1234 5678 9123 0000"
+						></input>
+						<span className="form-error">simple error</span>
+					</div>
+					<div className="container-right-side-lower-section">
+						<div className="form-item small-width">
+							<label
+								form="expiredM"
+								className="form-label"
+								placeholder="e.g 1234 5678 9123 0000"
+							>
+								EXP.DATE
+							</label>
+							<input
+								name="expiredM"
+								id="expiredM"
+								type="number"
+								className="form-input "
+								placeholder="MM"
+							></input>
+							<span className="form-error">simple error</span>
+						</div>
+						<div className="form-item small-width">
+							<label
+								form="expiredY"
+								className="form-label"
+								placeholder="YY"
+							>
+								(MM/YY)
+							</label>
+							<input
+								name="expiredY"
+								id="expiredY"
+								type="number"
+								className="form-input "
+								placeholder="YY"
+							></input>
+							<span className="form-error">simple error</span>
+						</div>
+						<div className="form-item high-width">
+							<label
+								form="codeCVC"
+								className="form-label"
+								placeholder="YY"
+							>
+								CVC
+							</label>
+							<input
+								name="codeCVC"
+								id="codeCVC"
+								type="number"
+								className="form-input "
+								placeholder="CVC"
+							></input>
+							<span className="form-error">simple error</span>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	);
