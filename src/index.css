@@ -95,11 +95,13 @@ label {
 	text-transform: uppercase;
 }
 .form-container {
-	display: inline-block;
+	display: flex;
+	flex-direction: column;
 }
 .form-item {
 	display: flex;
 	flex-direction: column;
+	margin-bottom: 10px;
 }
 .form-item > * {
 	align-self: self-start;
@@ -146,8 +148,20 @@ label {
 }
 .container-right-side-lower-section .small-width {
 	width: 50px;
-	margin-right: 50px;
+	margin-right: 30px;
 }
 .container-right-side-lower-section .high-width {
 	flex: 1;
+}
+.confirm-btn {
+	flex: 1;
+	width: 100%;
+	margin: 10px;
+	padding: 10px;
+	font-family: "Space Grotesk", sans-serif;
+	font-size: 18px;
+	font-weight: 500;
+	border-radius: 5px;
+	color: #ffffff;
+	background-color: hsl(278, 68%, 11%);
 }

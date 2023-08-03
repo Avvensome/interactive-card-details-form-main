@@ -6,108 +6,67 @@ function App() {
 				<CardFront />
 				<CardBack />
 			</LeftSide>
-			<RightSide />
+			<RightSide>
+				<FormItem
+					formName={"holdername"}
+					placeholder={"e.g Jhon Doe"}
+					inputType={"text"}
+					labelText={"cardholder name"}
+				/>
+				<FormItem
+					formName={"expiredM"}
+					placeholder={"e.g 1234 5678 9123 0000"}
+					inputType={"number"}
+					labelText={"card number"}
+				/>
+				<div className="container-right-side-lower-section">
+					<FormItem
+						formName={"expiredM"}
+						placeholder={"MM"}
+						inputType={"number"}
+						labelText={"MM"}
+						additionalClass={"small-width"}
+					/>
+					<FormItem
+						formName={"expiredY"}
+						placeholder={"YY"}
+						inputType={"number"}
+						labelText={"YY"}
+						additionalClass={"small-width"}
+					/>
+					<FormItem
+						formName={"codeCVC"}
+						placeholder={"e.g. 123"}
+						inputType={"number"}
+						labelText={"CVC"}
+						additionalClass={"high-width"}
+					/>
+				</div>
+				<Button />
+			</RightSide>
 		</div>
 	);
 }
 function LeftSide({ children }) {
 	return <div className="container-left-side-main">{children}</div>;
 }
-function RightSide() {
+function RightSide({ children }) {
 	return (
 		<div className="container-right-side-main">
 			<div className="container-right-side">
-				<form className="form-container">
-					<div className="form-item">
-						<label
-							form="holdername"
-							className="form-label"
-							placeholder="e.g Jhon Doe"
-						>
-							Cardholder Name
-						</label>
-						<input
-							name="holdername"
-							id="holdername"
-							type="text"
-							className="form-input "
-							placeholder="e.g Jhon Doe"
-						></input>
-						<span className="form-error">simple error</span>
-					</div>
-					<div className="form-item">
-						<label
-							form="cardnumber"
-							className="form-label"
-							placeholder="e.g 1234 5678 9123 0000"
-						>
-							Card number
-						</label>
-						<input
-							name="cardnumber"
-							id="cardnumber"
-							type="number"
-							className="form-input "
-							placeholder="e.g 1234 5678 9123 0000"
-						></input>
-						<span className="form-error">simple error</span>
-					</div>
-					<div className="container-right-side-lower-section">
-						<div className="form-item small-width">
-							<label
-								form="expiredM"
-								className="form-label"
-								placeholder="e.g 1234 5678 9123 0000"
-							>
-								EXP.DATE
-							</label>
-							<input
-								name="expiredM"
-								id="expiredM"
-								type="number"
-								className="form-input "
-								placeholder="MM"
-							></input>
-							<span className="form-error">simple error</span>
-						</div>
-						<div className="form-item small-width">
-							<label
-								form="expiredY"
-								className="form-label"
-								placeholder="YY"
-							>
-								(MM/YY)
-							</label>
-							<input
-								name="expiredY"
-								id="expiredY"
-								type="number"
-								className="form-input "
-								placeholder="YY"
-							></input>
-							<span className="form-error">simple error</span>
-						</div>
-						<div className="form-item high-width">
-							<label
-								form="codeCVC"
-								className="form-label"
-								placeholder="YY"
-							>
-								CVC
-							</label>
-							<input
-								name="codeCVC"
-								id="codeCVC"
-								type="number"
-								className="form-input "
-								placeholder="CVC"
-							></input>
-							<span className="form-error">simple error</span>
-						</div>
-					</div>
-				</form>
+				<form className="form-container">{children}</form>
 			</div>
 		</div>
+	);
+}
+// Left Side
+function Background() {
+	return (
+		<img
+			className="left-side-bg"
+			src="/images/bg-main-desktop.png"
+			alt="background"
+		/>
 	);
 }
 function CardFront({ cardNumber, cardHolder, expMonth, expYear }) {
@@ -151,13 +110,39 @@ function CardBack({ cvvValue }) {
 		</div>
 	);
 }
-function Background() {
+// Right Side
+
+function FormItem({
+	formName,
+	placeholder,
+	inputType,
+	errMsg,
+	labelText,
+	additionalClass,
+}) {
 	return (
-		<img
-			className="left-side-bg"
-			src="/images/bg-main-desktop.png"
-			alt="background"
-		/>
+		<div className="form-item">
+			<label
+				form={formName}
+				className="form-label"
+				placeholder={placeholder}
+			>
+				{labelText}
+			</label>
+			<input
+				name={formName}
+				id={formName}
+				type={inputType}
+				className={`form-input ${additionalClass}`}
+				placeholder={placeholder}
+			></input>
+			<span className="form-error">{errMsg}</span>
+		</div>
 	);
 }
+
+function Button() {
+	return <button className="confirm-btn">Confirm</button>;
+}
+
 export default App;
