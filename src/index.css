@@ -1,13 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+/* Main */
+* {
+	padding: 0;
+	margin: 0;
+}
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	overflow: hidden;
+}
+/* Left Side */
+.left-side-bg {
+	height: 100vh;
+}
+.container-left-side-main {
+	position: relative;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.card-front-container {
+	position: absolute;
+	top: 250px;
+	left: 200px;
+}
+.card-back-container {
+	position: absolute;
+	top: 540px;
+	left: 300px;
+}
+/* Cards */
+.card {
+	box-shadow: 13px 9px 38px -10px rgba(66, 68, 90, 1);
+	border-radius: 15px;
+}
+.bank-logo {
+	position: absolute;
+	width: 50px;
+	top: 20px;
+}
+.bank-logo-main {
+	left: 20px;
+}
+.bank-logo-second {
+	left: 80px;
+}
+.card-info {
+	position: absolute;
+	font-family: "Space Grotesk", sans-serif;
+	color: white;
+	font-size: 18px;
+}
+.card-number {
+	bottom: 70px;
+	left: 35px;
+	font-size: 25px;
+}
+.card-holder {
+	bottom: 30px;
+	left: 35px;
+}
+.card-date {
+	bottom: 30px;
+	right: 35px;
+}
+.card-cvv {
+	top: 105px;
+	right: 60px;
 }
