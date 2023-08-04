@@ -1,10 +1,70 @@
+import { useState } from "react";
+
+function displayMonth() {
+	const currentDate = new Date();
+	const month = currentDate.getMonth() + 1;
+	const monthWithLeadingZero = month < 10 ? `0${month}` : month.toString();
+	return monthWithLeadingZero;
+}
+function displayYear() {
+	const currentDate = new Date();
+	const fullYear = currentDate.getFullYear();
+	const lastTwoDigitsOfYear = fullYear % 100;
+	return lastTwoDigitsOfYear;
+}
+console.log(displayYear());
 function App() {
+	// States
+	const [cardHolder, setCardHolder] = useState("Jhoe Doe");
+	const [cardNumber, setcardNumber] = useState("0000 0000 0000 0000");
+	const [cardExpiredM, setCardExpiredM] = useState(displayMonth());
+	const [cardExpiredY, setCardExpiredY] = useState(displayYear());
+	const [cardCVC, setCardCVC] = useState("123");
+
+	// Handlers
+	const handleCardHolder = (e) => {
+		const inputValue = e.target.value;
+		const inputLettersOnly = inputValue.replace(/[^A-Za-z\s]/g, "");
+		setCardHolder(inputLettersOnly);
+	};
+	const handleCardNumber = (e) => {
+		const input = e.target.value;
+		const digitsOnly = input.replace(/[^\d]/g, "").slice(0, 16);
+		let formattedValue = "";
+		for (let i = 0; i < digitsOnly.length; i += 4) {
+			if (i !== 0) {
+				formattedValue += " ";
+			}
+			formattedValue += digitsOnly.slice(i, i + 4);
+		}
+		setcardNumber(formattedValue);
+	};
+	const hadndleCardExpiredM = (e) => {
+		const inputValue = e.target.value;
+		const formattedValue = inputValue.replace(/[^\d]/g, "").slice(0, 2);
+		setCardExpiredM(formattedValue);
+	};
+	const handleCardExpiredY = (e) => {
+		const inputValue = e.target.value;
+		const formattedValue = inputValue.replace(/[^\d]/g, "").slice(0, 2);
+		setCardExpiredY(formattedValue);
+	};
+	const handleCardCVC = (e) => {
+		const inputValue = e.target.value;
+		const formattedValue = inputValue.replace(/[^\d]/g, "").slice(0, 3);
+		setCardCVC(formattedValue);
+	};
 	return (
 		<div className="container-main">
 			<LeftSide>
 				<Background />
-				<CardFront />
-				<CardBack />
+				<CardFront
+					cardNumber={cardNumber}
+					cardHolder={cardHolder}
+					expMonth={cardExpiredM}
+					expYear={cardExpiredY}
+				/>
+				<CardBack cvvValue={cardCVC} />
 			</LeftSide>
 			<RightSide>
 				<FormItem
@@ -12,20 +72,34 @@ function App() {
 					placeholder={"e.g Jhon Doe"}
 					inputType={"text"}
 					labelText={"cardholder name"}
+					onChange={handleCardHolder}
+					value={cardHolder}
+					errMsg={"The field cannot be left blank"}
+					additionalClass={
+						cardHolder.length === 0 ? "form-input-error" : " "
+					}
 				/>
 				<FormItem
 					formName={"expiredM"}
 					placeholder={"e.g 1234 5678 9123 0000"}
-					inputType={"number"}
+					inputType={"text"}
 					labelText={"card number"}
+					additionalClass={
+						cardNumber.length < 19 ? "form-input-error" : " "
+					}
+					onChange={handleCardNumber}
+					value={cardNumber}
+					errMsg={"Must be a minimum of 16 digits"}
 				/>
 				<div className="container-right-side-lower-section">
 					<FormItem
 						formName={"expiredM"}
 						placeholder={"MM"}
-						inputType={"number"}
+						inputType={"text"}
 						labelText={"MM"}
 						additionalClass={"small-width"}
+						onChange={hadndleCardExpiredM}
+						value={cardExpiredM}
 					/>
 					<FormItem
 						formName={"expiredY"}
@@ -33,6 +107,8 @@ function App() {
 						inputType={"number"}
 						labelText={"YY"}
 						additionalClass={"small-width"}
+						onChange={handleCardExpiredY}
+						value={cardExpiredY}
 					/>
 					<FormItem
 						formName={"codeCVC"}
@@ -40,6 +116,9 @@ function App() {
 						inputType={"number"}
 						labelText={"CVC"}
 						additionalClass={"high-width"}
+						onChange={handleCardCVC}
+						value={cardCVC}
+						errMsg={"Must be a 3 digits"}
 					/>
 				</div>
 				<Button />
@@ -119,6 +198,9 @@ function FormItem({
 	errMsg,
 	labelText,
 	additionalClass,
+	errClass,
+	onChange,
+	value,
 }) {
 	return (
 		<div className="form-item">
@@ -133,10 +215,12 @@ function FormItem({
 				name={formName}
 				id={formName}
 				type={inputType}
-				className={`form-input ${additionalClass}`}
+				className={`${additionalClass} form-input `}
 				placeholder={placeholder}
+				value={value}
+				onChange={onChange}
 			></input>
-			<span className="form-error">{errMsg}</span>
+			<span className={`form-error ${errClass}`}>{errMsg}</span>
 		</div>
 	);
 }
